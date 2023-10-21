@@ -6,19 +6,41 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+.container{
+    width: 100vw;
+    height: 100vh;
+    background: #6C7A89;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 300px;
+    height: 300px;
+    background: #fff;
+    border-radius: 2%;
+}
 
 .botao{
     background-color: #7E5A50;
     border: none;
     padding: 12px;
-    width: 50%;
+    width: 10%;
     border-radius: 20px;
     color: #fff;
     font-size: 12px;
+    display: center;
 }
 
 .title{
  font-size: 20px;
  font-family: 'Sarala', sans-serif;
+ display: center;
 }
 
+.text-box{
+    border-radius: 10px;
+    display: center;
+}
