@@ -19,3 +19,14 @@ div
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.botao{
+    background-color: black;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+}
+
