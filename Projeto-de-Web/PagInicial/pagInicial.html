@@ -6,96 +6,51 @@
     <link rel="stylesheet" href="pagInicial.css">
 </head>
 <body>
-    <nav>
-        <div>
-            <table>
-                <tr>
-                    <th scope="col">Modelo/Marca</th>
-                    <th scope="col">Quantidade</th>
-                    <th scope="col">Valor</th>
-                </tr>
-                <tr>
-                    <th scope="row">Air Jordan 1 Mid</th>
-                    <td>1</td>
-                    <td>R$ 5999,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Adidas Ultraboost 22</th>
-                    <td>4</td>
-                    <td>R$ 599,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Chinelo Jordan Play</th>
-                    <td>16</td>
-                    <td>R$ 299,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">LE COQ Sportif R1000</th>
-                    <td>5</td>
-                    <td>R$ 1099,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Nike Revolution 6</th>
-                    <td>12</td>
-                    <td>R$ 249,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Everlast Dakar</th>
-                    <td>8</td>
-                    <td>R$ 599,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Mizuno Wave Prophyce 12</th>
-                    <td>11</td>
-                    <td>R$ 1299,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Camiseta OWN THE RUN</th>
-                    <td>20</td>
-                    <td>R$ 230,00</td>
-                </tr>
-                <tr>
-                    <th scope="row">Shorts adidas Estro</th>
-                    <td>22</td>
-                    <td>R$ 160,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Calça Moletom Essentials Logo Fleece</th>
-                    <td>16</td>
-                    <td>R$ 230,00</td>
-                </tr>
-                <tr>
-                    <th scope="row">FOX Luva Ranger Azul Camuflado</th>
-                    <td>22</td>
-                    <td>R$ 150,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">Camisa Nike Dri-FIT</th>
-                    <td>30</td>
-                    <td>R$ 100,00</td>
-                </tr>
-                <tr>
-                    <th scope="row">PUMA Camiseta Active Small Logo </th>
-                    <td>23</td>
-                    <td>R$ 79,99</td>
-                </tr>
-                <tr>
-                    <th scope="row">BOLD Caixa Mista (12 unid.)</th>
-                    <td>25</td>
-                    <td>R$ 110,00</td>
-                </tr>
-                <tr>
-                    <th scope="row">INTEGRALMEDICA Creatina Hardcore</th>
-                    <td>32</td>
-                    <td>R$ 255,00</td>
-                </tr>
-                <tr>
-                    <th scope="row">GYMSHARK Power T-Shirt</th>
-                    <td>17</td>
-                    <td>R$ 189,99</td>
-                </tr>
-            </table>
+    <form>
+        <div class="campo">
+            <h1>Cadastrar Protudos</h1>
+            <p>Coloque as informações do produto</p>
+            <br>
         </div>
-    </nav>
+        
+        <fieldset class="grupo">
+            <div class="campo">
+                <label for="nome"><strong>Nome do produto</strong></label>
+                <input type="text" id="produto" required>
+            </div>
+            
+            <div class="campo">
+                <label for="sobrenome"><strong>Descrição do produto</strong></label>
+                <input type="text" name="sobrenome" id="sobrenome" required>
+            </div>
+
+            <div class="campo">
+                <label for="sobrenome"><strong>Informe o valor do produto</strong></label>
+                <input type="text" name="sobrenome" id="sobrenome" required>
+            </div>
+        </fieldset>
+        
+        <fieldset class="grupo">
+            <div id="check">
+                <label"><strong>Selecione a categoria do produto:</strong></label><br><br>
+                <input type="checkbox" name="categoria1" value="produto">
+                <label for="categoria1">Corrida</label>
+                <input type="checkbox" name="categoria2" value="CSS">
+                <label for="categoria2">Esporte ar Livre</label>
+             <input type="checkbox" name="tenologia3" value="JavaScript">
+                <label for="tenologia3">Esporte Radical</label>
+                <input type="checkbox" name="tenologia4" value="PHP">
+                <label for="tenologia4">Musculação</label>
+                <input type="checkbox" name="tenologia5" value="C#">
+                <label for="tenologia5">Futebol</label>
+                <input type="checkbox" nome="tenologias6" value="C++">
+                <label for="tenoligas6">Suplementos</label>
+                <input type="checkbox" name="tenologia7" value="Python">
+                <label for="tenologia7">Geral</label>
+            </div>
+        </fieldset>
+    
+        <button class="botao" type="submit">Concluído</button>
+    </form>
 </body>
 </html>
