@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registre-se</title>
+    <link rel="stylesheet" type="text/css" href="registro.css">
+    <script src="registro.js"></script>
+
+</head>
+
+<body>
+    <div id="registro-conteudo">
+        <h1>Registre-se Aqui</h1>
+        <form action="/registro-funcionario" method="post">
+      
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off" required>
+            
+            <label for="cargo">Cargo</label>
+            <input type="text" name="cargo" id="cargo" placeholder="Digite seu Cargo" autocomplete="off" required>
+            
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off" required>
+            
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha" autocomplete="off" required>
+            
+            <label for="confirmar-senha">Confirmar Senha</label>
+            <input type="password" name="confirmar-senha" id="confirmar-senha" placeholder="Confirme sua senha" autocomplete="off" required>
+            
+            <input type="submit" value="Registrar">
+        </form>
+        
+        <script>
+            document.getElementById('registro-form').addEventListener('submit', function (event) {
+                if (!validarFormulario()) {
+                    event.preventDefault();
+                }
+            });
+
+            function validarFormulario() {
+                const nome = document.getElementById('nome').value;
+                const cargo = document.getElementById('cargo').value;
+                const email = document.getElementById('email').value;
+                const senha = document.getElementById('senha').value;
+                const confirmarSenha = document.getElementById('confirmar-senha').value;
+
+                // Validar campos obrigatórios
+                if (!nome || !cargo || !email || !senha || !confirmarSenha) {
+                    alert('Por favor, preencha todos os campos.');
+                    return false;
+                }
+
+                // Validar se as senhas coincidem
+                if (senha !== confirmarSenha) {
+                    alert('As senhas não coincidem.');
+                    return false;
+                }
+
+                // Adicione outras verificações conforme necessário
+
+                return true;
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -11,6 +11,29 @@ const sequelize = new Sequelize('railway', 'postgres', 'DEA-f12A-F24cBCAB52F32DE
   },
 });
 
+const Funcionario = sequelize.define('Funcionario', {
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  cargo: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true,
+    },
+  },
+  senha: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
 const Produtos = sequelize.define('Produtos', {
   nome: {
     type: DataTypes.STRING,
@@ -34,14 +57,14 @@ const Produtos = sequelize.define('Produtos', {
   },
 });
 
-// Sincronize o modelo com o banco de dados
-(async () => {
-  try {
-    await sequelize.sync();
-    console.log('Modelo sincronizado com o banco de dados.');
-  } catch (error) {
-    console.error('Erro ao sincronizar o modelo com o banco de dados:', error);
-  }
-})();
+const FuncionarioProduto = sequelize.define('FuncionarioProduto', {
+  quantidade: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+});
 
-module.exports = { sequelize, Produtos };
+Funcionario.belongsToMany(Produtos, { through: FuncionarioProduto });
+Produtos.belongsToMany(Funcionario, { through: FuncionarioProduto });
+
+module.exports = { sequelize, Funcionario, Produtos, FuncionarioProduto };
