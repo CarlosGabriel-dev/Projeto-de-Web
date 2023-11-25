@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Protudos</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <form id="cadastroForm" action="/cadastro" method="post">
+        <div class="campo">
+            <h1>Cadastrar Produtos</h1>
+            <p>Coloque as informações do produto</p>
+            <br>
+        </div>
+        
+        <fieldset class="grupo">
+            <div class="campo">
+                <label for="nome"><strong>Nome do produto</strong></label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            
+            <div class="campo">
+                <label for="descricao"><strong>Descrição do produto</strong></label>
+                <input type="text" id="descricao" name="descricao" required>
+            </div>
+
+            <div class="campo">
+                <label for="valor"><strong>Informe o valor do produto</strong></label>
+                <input type="text" id="valor" name="valor" required>
+            </div>
+            <div class="campo">
+                <label for="quantidade"><strong>Informe a quantidade de produtos</strong></label>
+                <input type="text" id="quantidade" name="quantidade" required>
+            </div>
+        </fieldset>
+        
+        <fieldset class="grupo">
+            <div id="check">
+                <label><strong>Selecione a categoria do produto:</strong></label><br><br>
+                <input type="checkbox" name="categoria1" value="produto">
+                <label for="categoria1">Corrida</label>
+                <input type="checkbox" name="categoria2" value="CSS">
+                <label for="categoria2">Esporte ar Livre</label>
+                <input type="checkbox" name="categoria3" value="JavaScript">
+                <label for="categoria3">Esporte Radical</label>
+                <input type="checkbox" name="categoria4" value="PHP">
+                <label for="categoria4">Musculação</label>
+                <input type="checkbox" name="categoria5" value="C#">
+                <label for="categoria5">Futebol</label>
+                <input type="checkbox" nome="categoria6" value="C++">
+                <label for="categoria6">Suplementos</label>
+                <input type="checkbox" name="categoria7" value="Python">
+                <label for="categoria7">Geral</label>
+            </div>
+        </fieldset>
+    
+        <button class="botao" type="button" onclick="enviarFormulario()">Concluído</button>
+
+<script>
+    function enviarFormulario() {
+        // Obter valores dos campos
+        const nome = document.getElementById('nome').value;
+        const descricao = document.getElementById('descricao').value;
+        const valor = document.getElementById('valor').value;
+        const quantidade = document.getElementById('quantidade').value;
+
+        // Obter valores dos checkboxes
+        const categorias = [];
+        document.querySelectorAll('input[name^="categoria"]:checked').forEach((checkbox) => {
+            categorias.push(checkbox.value);
+        });
+
+        // Criar objeto com os dados do formulário
+        const dados = {
+            nome: nome,
+            descricao: descricao,
+            valor: valor,
+            quantidade: quantidade,
+            categorias: categorias
+        };
+
+        // Enviar dados para o servidor usando Fetch API
+        fetch('/cadastro', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Adicione aqui o código para lidar com a resposta do servidor, se necessário
+        })
+        .catch(error => console.error('Erro:', error));
+    }
+</script>
+
+    </form>
+</body>
+</html>
