@@ -1,15 +1,24 @@
 // registro.js
+const bcrypt = require('bcrypt');
 
 document.getElementById('registro-form').addEventListener('submit', async function(event) {
     event.preventDefault();
+
+    const senha = document.getElementById('senha').value;
+    const confirmarSenha = document.getElementById('confirmar-senha').value;
+
+    // Verifique se as senhas coincidem antes de prosseguir
+    if (senha !== confirmarSenha) {
+        console.error('As senhas não coincidem');
+        return;
+    }
 
     const formData = {
         // Obtenha os valores dos campos do formulário aqui
         nome: document.getElementById('nome').value,
         cargo: document.getElementById('cargo').value,
         email: document.getElementById('email').value,
-        senha: document.getElementById('senha').value,
-        confirmarSenha: document.getElementById('confirmar-senha').value,
+        senha: bcrypt.hashSync(senha, 10), // Use apenas uma vez para evitar conflitos
     };
 
     try {

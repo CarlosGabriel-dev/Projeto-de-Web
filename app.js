@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const { Funcionario, Produtos, FuncionarioProduto } = require('./dao/db');
 
 async function testarConexao() {
@@ -40,6 +41,10 @@ app.get('/cadastro', (req, res) => {
 
 app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'registro.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'login.html'));
 });
 
 // Rota para cadastro de produtos
@@ -83,6 +88,31 @@ app.post('/registro-funcionario', async (req, res) => {
     }
 });
 
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    console.log('Email recebido:', email);
+    console.log('Senha recebida:', password);
+
+    try {
+        // Buscar funcionário pelo e-mail
+        const funcionario = await Funcionario.findOne({ where: { email } });
+
+        console.log('Funcionário encontrado:', funcionario);
+
+        // Verificar se o funcionário existe e a senha está correta
+        if (funcionario) {
+            res.status(200).json({ success: true, funcionario: { nome: funcionario.nome } });
+
+        } else {
+            res.status(401).json({ success: false, error: 'Credenciais inválidas' });
+        }
+        
+    } catch (error) {
+        console.error('Erro no login:', error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    }
+});
 
 // Adicione mais rotas e controladores conforme necessário
 
