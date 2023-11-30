@@ -2,10 +2,7 @@ const { Op } = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const bcrypt = require('bcrypt');
 const { Funcionario, Produtos, FuncionarioProduto } = require('./dao/db');
-
-
 
 
 async function testarConexao() {
