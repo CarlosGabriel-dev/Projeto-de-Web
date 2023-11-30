@@ -43,7 +43,9 @@ app.get('/', (req, res) => {
 });
 // Rota para a página home
 app.get('/home', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'home.html'));
+    const indexPath = path.join(__dirname, 'pages', 'home.html');
+    console.log('Acessando a página home. Caminho do arquivo:', indexPath);
+    res.sendFile(indexPath);
 });
 // Rota para a página de cadastro
 app.get('/cadastro', (req, res) => {
@@ -244,6 +246,34 @@ app.put('/editar-produto/:id', async (req, res) => {
         res.status(500).json({ success: false, error: 'Erro interno do servidor' });
     }
 });
+
+// Exemplo de rota no Express para atualizar a quantidade
+app.put('/atualizar-quantidade/:id', async (req, res) => {
+    const { id } = req.params;
+    const { quantidadeDelta } = req.body;
+
+    try {
+        const produto = await Produtos.findByPk(id);
+
+        if (!produto) {
+            return res.status(404).json({ success: false, error: 'Produto não encontrado' });
+        }
+
+        // Atualizar a quantidade com o delta fornecido
+        produto.quantidade += quantidadeDelta;
+
+        // Salvar as alterações no banco de dados
+        await produto.save();
+
+        res.status(200).json({ success: true });
+    } catch (error) {
+        console.error('Erro ao atualizar quantidade:', error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    }
+});
+
+
+
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);

@@ -32,6 +32,14 @@
         </form>
         
         <script>
+            function incrementQuantidade(produtoId, inputQuantidade) {
+        atualizarQuantidade(produtoId, 1, inputQuantidade);
+    }
+
+    function decrementQuantidade(produtoId, inputQuantidade) {
+        atualizarQuantidade(produtoId, -1, inputQuantidade);
+    }
+
            document.getElementById('form-buscar-produtos').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -62,9 +70,9 @@
             const headerRow = table.insertRow(0);
             const headers = ['Nome', 'Descrição', 'Valor', 'Quantidade', 'Categorias', 'Data de Criação', 'Data de Atualização'];
             headers.forEach((header) => {
-                const th = document.createElement('th');
-                th.textContent = header;
-                headerRow.appendChild(th);
+            const th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
             });
             result.produtos.forEach((produto) => {
     const row = table.insertRow(-1);
@@ -88,6 +96,23 @@
     removerButton.textContent = 'Remover';
     removerButton.addEventListener('click', () => removerProduto(produto.id)); // Chama a função de remoção
     removerCell.appendChild(removerButton);
+
+    const quantidadeCell = row.insertCell(-1);
+            const quantidadeInput = document.createElement('input');
+            quantidadeInput.type = 'number';
+            quantidadeInput.value = produto.quantidade;
+            quantidadeCell.appendChild(quantidadeInput);
+
+            const decrementButton = document.createElement('button');
+            decrementButton.textContent = '-';
+            decrementButton.addEventListener('click', () => decrementQuantidade(produto.id, quantidadeInput));
+            quantidadeCell.appendChild(decrementButton);
+
+            const incrementButton = document.createElement('button');
+            incrementButton.textContent = '+';
+            incrementButton.addEventListener('click', () => incrementQuantidade(produto.id, quantidadeInput));
+            quantidadeCell.appendChild(incrementButton);
+        
 });
 
             // Adicionar a tabela à div de resultados
@@ -99,6 +124,32 @@
         console.error('Erro ao enviar solicitação:', error);
     }
 });
+
+
+async function atualizarQuantidade(produtoId, quantidadeDelta) {
+    try {
+        const response = await fetch(`/atualizar-quantidade/${produtoId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ quantidadeDelta }),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Atualizar a interface do usuário com a nova quantidade
+            // Isso pode envolver a atualização da tabela ou de elementos específicos.
+            console.log('Quantidade atualizada com sucesso!');
+        } else {
+            console.error('Erro ao atualizar quantidade:', result.error);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar solicitação:', error);
+    }
+}
+
 
 function editarProduto(id) {
     window.location.href = `/editar-produto/${id}`;
@@ -128,3 +179,4 @@ function removerProduto(id) {
     </div> 
     <div id="resultados"></div>   
 </body>       
+

@@ -132,7 +132,7 @@ input[type="submit"]:hover{
 
 /* Estilização do botão "Remover" */
 .resultado-table td button {
-  background-color: crimson;
+  background-color:  dodgerblue;
   color: white;
   padding: 5px 10px;
   border: none;
@@ -141,5 +141,5 @@ input[type="submit"]:hover{
 }
 
 .resultado-table td button:hover {
-  background-color: darkred;
+  background-color: dodgerblue;
 }

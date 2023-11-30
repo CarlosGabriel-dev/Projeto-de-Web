@@ -50,26 +50,26 @@
         <fieldset class="grupo">
             <div id="check">
                 <label><strong>Selecione a categoria do produto:</strong></label><br><br>
-                <input type="checkbox" name="categoria1" value="produto">
+                <input type="checkbox" name="categoria1" value="Corrida">
                 <label for="categoria1">Corrida</label>
-                <input type="checkbox" name="categoria2" value="CSS">
+                <input type="checkbox" name="categoria2" value="Esporte ao ar livre">
                 <label for="categoria2">Esporte ar Livre</label>
-                <input type="checkbox" name="categoria3" value="JavaScript">
+                <input type="checkbox" name="categoria3" value="Esporte Radical">
                 <label for="categoria3">Esporte Radical</label>
-                <input type="checkbox" name="categoria4" value="PHP">
+                <input type="checkbox" name="categoria4" value="Musculação">
                 <label for="categoria4">Musculação</label>
-                <input type="checkbox" name="categoria5" value="C#">
-                <label for="categoria5">Futebol</label>
-                <input type="checkbox" nome="categoria6" value="C++">
-                <label for="categoria6">Suplementos</label>
-                <input type="checkbox" name="categoria7" value="Python">
+                <input type="checkbox" name="categoria5" value="Suplementos">
+                <label for="categoria5">Suplementos</label>
+                <input type="checkbox" nome="categoria6" value="Vestuário">
+                <label for="categoria6">Vestuário</label>
+                <input type="checkbox" name="categoria7" value="Geral">
                 <label for="categoria7">Geral</label>
             </div>
         </fieldset>
     
         <button class="botao" type="button" onclick="enviarFormulario()">Concluído</button>
 
-<script>
+    <script>
     function enviarFormulario() {
         // Obter valores dos campos
         const nome = document.getElementById('nome').value;
@@ -79,7 +79,7 @@
 
         // Obter valores dos checkboxes
         const categorias = [];
-        document.querySelectorAll('input[name^="categoria"]:checked').forEach((checkbox) => {
+        document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
             categorias.push(checkbox.value);
         });
 
@@ -108,7 +108,6 @@
         .catch(error => console.error('Erro:', error));
     }
 </script>
-
     </form>
 </body>
 </html>
