@@ -1,0 +1,34 @@
+config.yml
+version: '16.17.1'
+
+services:
+  web:
+    port: 3000
+    env:
+      NODE_ENV: production
+databases:
+  default:
+    url: '${{ DATABASE_URL }}'
+
+
+# Configurações adicionais para a implantação
+build:
+ 
+  - npm ci
+
+# Defina os comandos de inicialização do seu aplicativo
+# Normalmente, isso inclui o comando para iniciar o servidor
+start:
+  - node app.js
+
+# Configurações para os bancos de dados
+services:
+  # Configure o banco de dados conforme necessário
+  # Certifique-se de ajustar conforme necessário
+  postgres:
+    image: postgres:13-alpine
+    env_file: .env
+    # Adicione outras configurações conforme necessário
+
+# Outras configurações específicas do Railway
+# Consulte a documentação do Railway para mais opções
