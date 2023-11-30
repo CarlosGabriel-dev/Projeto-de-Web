@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Comissão</title>
+    <link rel="stylesheet" type="text/css" href="Styles.css">
+    <script src="registro.js"></script>
+
+</head>
+
+<body>
+    <header class = "cabecalho">
+        <nav class="cabecalho-menu">
+            <a>
+                <img class="cabecalho-img" src="/public/img/logo.png" alt="Logo estoque"> 
+            </a>
+            <ul>
+                <li>
+                    <a href="/pages/home/index.html" class="branco">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="registro-conteudo">
+        <h1>Calcular Comissão</h1>
+        <form method="post">
+                <label for="nome">Nome do Funcionario</label>
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off" required>
+                
+                <label for="cargo">Cargo</label>
+                <input type="text" name="cargo" id="cargo" placeholder="Digite seu Cargo" autocomplete="off" required>
+                
+                <label for="number">Lucro</label>
+                <input type="text" name="number" id="number" placeholder="Digite o Lucro" required>
+                
+                <label for="number">Total da Comissão</label>
+                <input type="text" required name="txtstart">
+                
+                <input type="submit" value="Calcular">
+        </form>
+    </div>    
+</body>     

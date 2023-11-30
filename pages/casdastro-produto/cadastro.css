@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+
+* {
+  margin: 0,5;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 nav {
     background-color: #fff;
     padding: 12px;
@@ -27,20 +35,14 @@ ul li {
     color: #fff;
     background-color: #000;
   }
-  * {
-      margin: 0,5;
-      padding: 0;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
-  
-  .cabecalho{
-      font-family: 'Sarala', sans-serif;
+ 
+.cabecalho{
+    font-family: 'Sarala', sans-serif;
     color: #FFF2E7;
     font-weight: 400;
     font-size: 20px
   }
-  .cabecalho-img{
+.cabecalho-img{
     height: 48px;
     border-radius: 150%;
   }
@@ -53,16 +55,12 @@ ul li {
     align-content: stretch;
     align-items: stretch;
 }
-*{
-    margin: 0;
-    padding: 0;
-  }
 
-  fieldset {
+fieldset {
   border: 0;
   }
 
-  body{
+body{
     background-color: aliceblue;
     font-family:'sarala';
     font-size: 1em;

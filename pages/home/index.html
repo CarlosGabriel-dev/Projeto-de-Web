@@ -2,46 +2,47 @@
 <html lang="pt-br">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EsporteStock</title>
-    <link rel="stylesheet" type="text/css" href="/index.css">
+    <title>Home EsporteStock</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
     <header class = "cabecalho">
     <nav class="cabecalho-menu">
         <a>
-            <img class="cabecalho-img" src="img\logo.png" alt="Logo estoque"> 
+            <img class="cabecalho-img" src="/public/img/logo.png" alt="Logo estoque"> 
         </a>
         <ul>
             <li>
-                <a href="/" class="branco">Página Inicial</a>
-            </li>
-            
-            <li>
-                <a href="registro.html" class="branco">Registre-se</a>
-            </li>
-            <li>
-                <a href="login.html" class="branco">Entrar</a>
+                <a href="/pages/home/index.html" class="branco">Home</a>
             </li>
         </ul>
     </nav>
 </header>
 <section class="section" id="categorias">
 <main class="conteudo">
+
     <div class= "conteudo-botao">
-        <a href="/cadastro.html">
-            <button class="conteudo-principal-botao">
-              <img class="imagens-botao" src="img\cadastro.png" alt="botão de pesquisa">Cadastro
+        <a href="/pages/casdastro-produto/cadastro.html">
+            <button class="conteudo-principal-botao"><img class="imagens-botao" src="/public/img/cadastro.png" alt="botão de pesquisa">Cadastro
             </button>
           </a>
           
     </div>
     
     <div class="conteudo-botao">
-        <button class="conteudo-principal-botao"><img class="imagens-botao" src="img/visao.png" alt="imagens de comprimidos">Visualização</button>
+        <a href="/pages/Estoque/index.html">
+        <button class="conteudo-principal-botao"><img class="imagens-botao" src="/public/img/visao.png" alt="imagens de comprimidos">Estoque</button>
     </div>
     
     <div class="conteudo-botao">
-        <button class="conteudo-principal-botao"><img class="imagens-botao" src="img/comissao.png" alt="imagem">Cáculos</button>
+        <a href="/pages/comissão/comissão.html">
+            <button class="conteudo-principal-botao"><img class="imagens-botao" src="/public/img/comissao.png" alt="imagem">Cáculos</button>
+    </div>
+
+    <div class="conteudo-botao">
+        <a href="/pages/restrigo-funcionario/registro.html">
+            <button class="conteudo-principal-botao"><img class="imagens-botao" src="/public/img/funcionario.png" alt="imagem">Novo Funcionario</button>
+        </a>
     </div>
 </section>
 </main>
