@@ -66,16 +66,29 @@
                 th.textContent = header;
                 headerRow.appendChild(th);
             });
-
-            // Linhas da tabela
             result.produtos.forEach((produto) => {
-                const row = table.insertRow(-1);
-                const keys = ['nome', 'descricao', 'valor', 'quantidade', 'categorias', 'createdAt', 'updatedAt'];
-                keys.forEach((key) => {
-                    const cell = row.insertCell(-1);
-                    cell.textContent = produto[key];
-                });
-            });
+    const row = table.insertRow(-1);
+    const keys = ['nome', 'descricao', 'valor', 'quantidade', 'categorias', 'createdAt', 'updatedAt'];
+
+    // Adicionar colunas de informações do produto
+    keys.forEach((key) => {
+        const cell = row.insertCell(-1);
+        cell.textContent = produto[key];
+    });
+
+    const editarCell = row.insertCell(-1);
+    const editarButton = document.createElement('button');
+    editarButton.textContent = 'Editar';
+    editarButton.addEventListener('click', () => editarProduto(produto.id)); // Chama a função de edição
+    editarCell.appendChild(editarButton);
+
+    // Adicionar coluna com o botão de remoção
+    const removerCell = row.insertCell(-1);
+    const removerButton = document.createElement('button');
+    removerButton.textContent = 'Remover';
+    removerButton.addEventListener('click', () => removerProduto(produto.id)); // Chama a função de remoção
+    removerCell.appendChild(removerButton);
+});
 
             // Adicionar a tabela à div de resultados
             document.getElementById('resultados').appendChild(table);
@@ -86,6 +99,30 @@
         console.error('Erro ao enviar solicitação:', error);
     }
 });
+
+function editarProduto(id) {
+    window.location.href = `/editar-produto/${id}`;
+}
+function removerProduto(id) {
+    const confirmacao = confirm('Deseja realmente remover este produto?');
+
+    if (confirmacao) {
+        // Enviar solicitação de remoção para a rota apropriada
+        fetch(`/remover-produto/${id}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    // Atualizar a página ou fazer outras ações necessárias
+                } else {
+                    alert('Erro ao remover produto.');
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+    }
+}
 
         </script>        
     </div> 

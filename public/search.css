@@ -112,7 +112,7 @@ input[type="submit"]:hover{
   background-color: deepskyblue;
   transition: 0.5s;
 }
-/* Adicione esta regra para estilizar a tabela de resultados */
+/* Estilização da tabela de resultados */
 .resultado-table {
   width: 100%;
   margin-top: 20px;
@@ -128,4 +128,18 @@ input[type="submit"]:hover{
 .resultado-table th {
   background-color: dodgerblue;
   color: white;
+}
+
+/* Estilização do botão "Remover" */
+.resultado-table td button {
+  background-color: crimson;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.resultado-table td button:hover {
+  background-color: darkred;
 }

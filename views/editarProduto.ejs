@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto</title>
+    <link rel="stylesheet" type="text/css" href="/editar.css"> <!-- Adicione o link para o arquivo CSS -->
+</head>
+<body>
+    <h1>Editar Produto</h1>
+
+    <form id="form-editar-produto">
+        <!-- Adicione campos de edição do produto, por exemplo: -->
+        <label for="nome">Nome do Produto</label>
+        <input type="text" name="nome" id="nome" required>
+
+        <label for="descricao">Descrição</label>
+        <textarea name="descricao" id="descricao" rows="4" required></textarea>
+
+        <label for="valor">Valor</label>
+        <input type="number" name="valor" id="valor" required>
+
+        <!-- Adicione mais campos conforme necessário -->
+
+        <input type="submit" value="Salvar Alterações">
+    </form>
+
+    <div id="mensagem" style="display: none;">
+        <p id="mensagem-texto"></p>
+        <button id="voltar-busca">OK</button>
+    </div>
+
+    <input type="hidden" name="id" id="id" value="<%= produto.id %>">
+
+    <script>
+       document.getElementById('form-editar-produto').addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const formData = {
+        // ... seus outros campos de formulário
+        nome: document.getElementById('nome').value,
+        descricao: document.getElementById('descricao').value,
+        valor: document.getElementById('valor').value,
+    };
+
+    try {
+        const response = await fetch(`/editar-produto/${document.getElementById('id').value}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            exibirMensagem('Produto atualizado com sucesso!');
+        } else {
+            exibirMensagem('Erro ao editar produto: ' + result.error);
+        }
+    } catch (error) {
+        exibirMensagem('Erro ao enviar solicitação: ' + error);
+    }
+});
+        function exibirMensagem(texto) {
+            document.getElementById('mensagem-texto').innerText = texto;
+            document.getElementById('mensagem').style.display = 'block';
+        }
+
+        document.getElementById('voltar-busca').addEventListener('click', function () {
+            window.location.href = '/search.html';
+        });
+    </script>
+
+    <!-- Adicione seus scripts ou links para scripts aqui -->
+</body>
+</html>

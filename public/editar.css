@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+.cabecalho{
+    color: #000000;
+    font-family: 'Sarala', sans-serif;
+    font-weight: 400;
+    font-size: 20px
+  }
+    
+  .cabecalho-img{
+    border-radius: 150%;
+    height: 48px;
+  }
+  
+  .cabecalho-menu {
+    gap: 32px;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    align-items: stretch;
+    display: flex;
+  }
+
+body {
+    background-color: aliceblue;
+}
+
+#edicao-conteudo {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: grid;
+    grid-gap: 16px;
+}
+
+label,
+input,
+textarea {
+    width: 100%;
+}
+
+input[type="submit"] {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    border-radius: 20px;
+    background-color: dodgerblue;
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+input[type="submit"]:hover {
+    background-color: deepskyblue;
+    transition: 0.5s;
+}

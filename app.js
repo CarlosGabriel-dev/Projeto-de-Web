@@ -54,6 +54,11 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'registro.html'));
 });
 
+app.get('/search', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'search.html'));
+});
+
+
 
 // Rota para cadastro de produtos
 app.post('/cadastro', async (req, res) => {
@@ -177,6 +182,65 @@ app.post('/buscar-produtos-json', async (req, res) => {
         res.status(200).json({ success: true, produtos });
     } catch (error) {
         console.error('Erro ao buscar produtos:', error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    }
+});
+
+app.delete('/remover-produto/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        // Use Sequelize para encontrar e remover o produto
+        const produtoRemovido = await Produtos.destroy({
+            where: { id: id }
+        });
+
+        if (produtoRemovido) {
+            res.status(200).json({ success: true, message: 'Produto removido com sucesso.' });
+        } else {
+            res.status(404).json({ success: false, error: 'Produto não encontrado.' });
+        }
+    } catch (error) {
+        console.error('Erro ao remover produto:', error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    }
+});
+
+
+
+app.get('/editar-produto/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const produto = await Produtos.findByPk(id);
+
+        if (!produto) {
+            return res.status(404).send('Produto não encontrado');
+        }
+
+        res.render('editarProduto', { produto });
+    } catch (error) {
+        console.error('Erro ao buscar produto:', error);
+        res.status(500).send('Erro interno do servidor');
+    }
+});
+
+app.put('/editar-produto/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { nome, descricao, valor } = req.body;
+
+        const result = await Produtos.update(
+            { nome, descricao, valor },
+            { where: { id } }
+        );
+
+        if (result[0] === 0) {
+            return res.status(404).json({ success: false, error: 'Produto não encontrado' });
+        }
+
+        res.status(200).json({ success: true });
+    } catch (error) {
+        console.error('Erro ao atualizar produto:', error);
         res.status(500).json({ success: false, error: 'Erro interno do servidor' });
     }
 });
