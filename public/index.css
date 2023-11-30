@@ -1,60 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+
+* {
+  margin: 0,5;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
 nav {
-    background-color: #fff;
-    padding: 10px;
-    margin: 0;
-    list-style: none;
-  }
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 0px;
+  list-style: none;
+  position:fixed;
+  left: 0;
+  top: 0;
+  right: 0;
   
-  ul li {
+}
+  
+ul li {
     display: inline-block;
     margin-right: 20px;
   }
   
-  ul li a {
+ul li a {
     text-decoration: none;
     color: #000;
     font-size: 16px;
   }
   
-  ul li a:hover {
+ul li a:hover {
     color: #fff;
     background-color: #000;
   }
-  * {
-      margin: 0,5;
-      padding: 0;
-      box-sizing: border-box;
-      text-decoration: none;
-    }
+
+body{
+    background-color: aliceblue;  
+  }
   
-    div{
-      height: 100%;
-      width: 100%;
-      width: 100px;
-      height: 100px;
-      float: left;
-      margin: 5px;
-      display: table;
-    }
-    .cabecalho{
-        font-family: 'Sarala', sans-serif;
+div{
+  height: 100%;
+  width: 100%;
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-top: 60px;
+  display: table;
+  }
+
+.cabecalho{
+      font-family: 'Sarala', sans-serif;
       color: #FFF2E7;
       font-weight: 400;
-      font-size: 18px
+      font-size: 18px;
     }
-    .cabecalho-img{
-      height: 48px;
-      border-radius: 150%;
-    }
-   .cabecalho-menu {
-      display: flex;
-      gap: 32px;
-      justify-content: space-between;
-      flex-direction: row;
-      flex-wrap: nowrap;
-      align-content: stretch;
-      align-items: stretch;
+
+.cabecalho-img{
+  height: 48px;
+  border-radius: 150%;
+}
+
+.cabecalho-menu {
+  display: flex;
+  gap: 32px;
+  justify-content:space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  align-items: stretch;
   }
+
   .conteudo {
     margin: 0 auto;
     display: flex;
@@ -66,44 +82,39 @@ nav {
 }
 
   
-  .conteudo-principal {
+.conteudo-principal {
     margin: 0 auto;
-  }
+}
   
   
-  .conteudo-principal-botao {
-    width: 200px;
-    height: 150px;
-    margin: 10px; /* Ajuste conforme necessário */
-    background-color: #ffffff;
-    border: none;
-    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    font-family: 'Sarala', sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    color: #2F2325;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.conteudo-principal-botao {
+  width: 200px;
+  height: 150px;
+  margin: 10px;
+  background-color: #ffffff;  
+  box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  font-family: 'Sarala', sans-serif;
+  font-size: 20px;
+  color: #2F2325;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-  
-  
-  
-  .imagens-botao{
+.imagens-botao{
   text-align: center;
   border-radius: 10%;
   width: 50px;
   height: 50px;
-  }
+}
   
-  .conteudo-inicial{
+.conteudo-inicial{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   padding: 24px;
-  }
+}

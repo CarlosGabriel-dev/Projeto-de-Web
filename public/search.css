@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Sarala:wght@400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+}
+
+h1{
+  padding-top: 7%;
+  padding-left: 35%;
+  font-family: 'sarala';
+}
+
+body{
+  background-color: aliceblue;
+}
+
+nav {
+  background-color: #ffffff;
+  padding: 12px;
+  margin: 0;
+  list-style: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 999;
+}
+  
+ul li {
+  margin-right: 20px;
+  display: inline-block;
+}
+  
+ul li a {
+  color: #000;
+  font-size: 16px;
+  text-decoration: none;
+}
+  
+ul li a:hover {
+  color: #fff;
+  background-color: #000;
+}
+  
+.cabecalho{
+  color: #000000;
+  font-family: 'Sarala', sans-serif;
+  font-weight: 400;
+  font-size: 20px
+}
+  
+.cabecalho-img{
+  border-radius: 150%;
+  height: 48px;
+}
+
+.cabecalho-menu {
+  gap: 32px;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  align-items: stretch;
+  display: flex;
+}
+
+/* formulário */
+
+form{
+  width: auto;
+  padding-top: 2%;
+  display: block;
+  padding-left: 30%;
+}
+
+label, input{
+  display: block;
+  width: 50%;
+  text-align: left;
+  font-family: 'sarala';
+}
+
+input{
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  font-family: 'Sarala', sans-serif;
+  border-radius: 20px;
+  border: 2px solid black;
+}
+
+input:focus{
+  border-bottom: 2px solid black;
+}
+
+input[type="submit"]{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  background-color: dodgerblue;
+  cursor: pointer;
+  border: 2px solid black;
+}
+
+input[type="submit"]:hover{
+  background-color: deepskyblue;
+  transition: 0.5s;
+}
+/* Adicione esta regra para estilizar a tabela de resultados */
+.resultado-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.resultado-table th, .resultado-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.resultado-table th {
+  background-color: dodgerblue;
+  color: white;
+}

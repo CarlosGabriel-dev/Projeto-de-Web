@@ -43,3 +43,4 @@ document.getElementById('registro-form').addEventListener('submit', async functi
         console.error('Erro ao enviar solicitação:', error);
     }
 });
+

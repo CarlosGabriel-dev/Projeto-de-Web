@@ -1,8 +1,12 @@
+const { Op } = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const bcrypt = require('bcrypt');
 const { Funcionario, Produtos, FuncionarioProduto } = require('./dao/db');
+
+
+
 
 async function testarConexao() {
     try {
@@ -28,12 +32,19 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'pages')));
-
-// Rota para a página inicial
+// Configuração do EJS como view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+// Rota para a página inicial (login)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'home', 'index.html'));
+    const indexPath = path.join(__dirname, 'pages', 'login.html');
+    console.log('Acessando a página de login. Caminho do arquivo:', indexPath);
+    res.sendFile(indexPath);
 });
-
+// Rota para a página home
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages', 'home.html'));
+});
 // Rota para a página de cadastro
 app.get('/cadastro', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'cadastro.html'));
@@ -43,9 +54,6 @@ app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, 'pages', 'registro.html'));
 });
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pages', 'login.html'));
-});
 
 // Rota para cadastro de produtos
 app.post('/cadastro', async (req, res) => {
@@ -88,7 +96,7 @@ app.post('/registro-funcionario', async (req, res) => {
     }
 });
 
-app.post('/login', async (req, res) => {
+app.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     console.log('Email recebido:', email);
@@ -114,7 +122,64 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Adicione mais rotas e controladores conforme necessário
+app.post('/calcular-comissao', (req, res) => {
+    const { nome, cargo, lucro, comissao } = req.body;
+
+    FuncionarioComissao.create({
+        nome,
+        cargo,
+        lucro,
+        comissao,
+    })
+    .then(() => {
+        res.status(201).json({ success: true });
+    })
+    .catch((error) => {
+        console.error(error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    });
+});
+
+// Rota para a busca de produtos
+app.post('/buscar-produtos', async (req, res) => {
+    const { nome } = req.body;
+
+    try {
+        const produtos = await Produtos.findAll({
+            where: {
+                nome: {
+                    [Op.like]: `%${nome}%`
+                }
+            }
+        });
+
+        // Renderizar a página HTML com os resultados da busca
+        res.render('resultadoBusca', { produtos });
+    } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+        res.status(500).send('Erro interno do servidor');
+    }
+});
+
+// Rota para exibir os resultados da busca diretamente em formato JSON
+app.post('/buscar-produtos-json', async (req, res) => {
+    const { nome } = req.body;
+
+    try {
+        const produtos = await Produtos.findAll({
+            where: {
+                nome: {
+                    [Op.like]: `%${nome}%`
+                }
+            }
+        });
+
+        res.status(200).json({ success: true, produtos });
+    } catch (error) {
+        console.error('Erro ao buscar produtos:', error);
+        res.status(500).json({ success: false, error: 'Erro interno do servidor' });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);

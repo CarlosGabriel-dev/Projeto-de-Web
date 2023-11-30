@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EsporteStock</title>
+    <link rel="stylesheet" type="text/css" href="/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+</head>
+
+<body>
+    <div id="Login-conteudo">
+        <h1>Conecte-se</h1>
+        <form id="seu-formulario-de-login">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" placeholder="Digite seu email" autocomplete="off" required>
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" placeholder="Digite sua senha" autocomplete="off" required>
+            <a href="#" id="forgot-pass">Esqueceu sua senha?</a>
+            <input type="submit" value="Conecte-se">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('seu-formulario-de-login').addEventListener('submit', async function(event) {
+            event.preventDefault();
+    
+            const formData = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            };
+    
+            try {
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                });
+    
+                const result = await response.json();
+    
+                if (result.success) {
+    // Login bem-sucedido, redirecione para a página inicial
+    window.location.href = '/home';
+    return;
+    // Acesse o nome do usuário e exiba onde desejar na página
+    const userName = result.funcionario.nome;
+    // Exemplo: Exibir o nome no console
+    console.log(`Bem-vindo, ${userName}!`);
+} else {
+    // Exiba uma mensagem de erro ou realize ações necessárias em caso de falha
+    console.error('Erro no login:', result.error);
+}
+
+            } catch (error) {
+                console.error('Erro ao enviar solicitação:', error);
+            }
+        });
+    </script>
+      
+</body>

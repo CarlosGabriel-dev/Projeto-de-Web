@@ -67,4 +67,23 @@ const FuncionarioProduto = sequelize.define('FuncionarioProduto', {
 Funcionario.belongsToMany(Produtos, { through: FuncionarioProduto });
 Produtos.belongsToMany(Funcionario, { through: FuncionarioProduto });
 
-module.exports = { sequelize, Funcionario, Produtos, FuncionarioProduto };
+const FuncionarioComissao = sequelize.define('FuncionarioComissao', {
+    nome: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    cargo: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    lucro: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+    comissao: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+    },
+});
+
+module.exports = { sequelize, Funcionario, Produtos, FuncionarioProduto, FuncionarioComissao };

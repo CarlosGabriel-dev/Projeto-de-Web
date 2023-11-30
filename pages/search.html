@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar no Estoque</title>
+    <link rel="stylesheet" type="text/css" href="/search.css">
+    <script src="registro.js"></script>
+
+</head>
+
+<body>
+    <header class = "cabecalho">
+        <nav class="cabecalho-menu">
+            <a>
+                <img class="cabecalho-img" src="img/logo.png" alt="Logo estoque"> 
+            </a>
+            <ul>
+                <li>
+                    <a href="home.html" class="branco">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="registro-conteudo">
+        <h1>Consultar Estoque</h1>
+        <form method="post" action="/buscar-produtos" id="form-buscar-produtos">
+            <label for="nome">Nome do Produto</label>
+            <input type="text" name="nome" id="nome" placeholder="pesquisar" autocomplete="off" required>
+            <input type="submit" value="Buscar">
+        </form>
+        
+        <script>
+           document.getElementById('form-buscar-produtos').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const formData = {
+        nome: document.getElementById('nome').value
+    };
+
+    try {
+        const response = await fetch('/buscar-produtos-json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            // Limpar resultados anteriores
+            document.getElementById('resultados').innerHTML = '';
+
+            // Criar tabela para exibir resultados
+            const table = document.createElement('table');
+            table.classList.add('resultado-table');
+
+            // Cabeçalho da tabela
+            const headerRow = table.insertRow(0);
+            const headers = ['Nome', 'Descrição', 'Valor', 'Quantidade', 'Categorias', 'Data de Criação', 'Data de Atualização'];
+            headers.forEach((header) => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+
+            // Linhas da tabela
+            result.produtos.forEach((produto) => {
+                const row = table.insertRow(-1);
+                const keys = ['nome', 'descricao', 'valor', 'quantidade', 'categorias', 'createdAt', 'updatedAt'];
+                keys.forEach((key) => {
+                    const cell = row.insertCell(-1);
+                    cell.textContent = produto[key];
+                });
+            });
+
+            // Adicionar a tabela à div de resultados
+            document.getElementById('resultados').appendChild(table);
+        } else {
+            console.error('Erro ao buscar produtos:', result.error);
+        }
+    } catch (error) {
+        console.error('Erro ao enviar solicitação:', error);
+    }
+});
+
+        </script>        
+    </div> 
+    <div id="resultados"></div>   
+</body>       

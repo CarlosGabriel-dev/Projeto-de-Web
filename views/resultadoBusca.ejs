@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Busca</title>
+    <!-- Adicione seus estilos ou links para folhas de estilo aqui -->
+</head>
+<body>
+    <h1>Resultados da Busca</h1>
+
+    <% if (produtos.length > 0) { %>
+        <ul>
+            <% produtos.forEach(produto => { %>
+                <li>
+                    <strong>Nome:</strong> <%= produto.nome %><br>
+                    <strong>Descrição:</strong> <%= produto.descricao %><br>
+                    <strong>Valor:</strong> <%= produto.valor %><br>
+                    <strong>Quantidade:</strong> <%= produto.quantidade %><br>
+                    <strong>Categorias:</strong> <%= produto.categorias %><br>
+                    <strong>Data de Criação:</strong> <%= produto.createdAt %><br>
+                    <strong>Data de Atualização:</strong> <%= produto.updatedAt %><br>
+                    <!-- Adicione outros detalhes do produto conforme necessário -->
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>Nenhum produto encontrado.</p>
+    <% } %>
+
+    <!-- Adicione seus scripts ou links para scripts aqui -->
+</body>
+</html>

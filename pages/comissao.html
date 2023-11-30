@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Comissão</title>
+    <link rel="stylesheet" type="text/css" href="/comissao.css">
+    <script src="registro.js"></script>
+
+</head>
+
+<body>
+    <header class = "cabecalho">
+        <nav class="cabecalho-menu">
+            <a>
+                <img class="cabecalho-img" src="img/logo.png" alt="Logo estoque"> 
+            </a>
+            <ul>
+                <li>
+                    <a href="home.html" class="branco">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div id="registro-conteudo">
+        <h1>Calcular Comissão</h1>
+        <form method="post" id="calculoForm">
+                <label for="nome">Nome do Funcionario</label>
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" autocomplete="off" required>
+                
+                <label for="cargo">Cargo</label>
+                <input type="text" name="cargo" id="cargo" placeholder="Digite seu Cargo" autocomplete="off" required>
+                
+                <label for="number">Lucro</label>
+                <input type="text" name="number" id="number" placeholder="Digite o Lucro" required>
+                
+                <label for="number">Total da Comissão</label>
+                <input type="text" required name="txtstart">
+                
+                <input type="submit" value="Calcular">
+        </form>
+        <script src="registro.js"></script>
+<script>
+    document.getElementById('calculoForm').addEventListener('submit', calcularComissao);
+    function calcularComissao(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    // Obtenha os valores dos campos do formulário
+    var lucro = parseFloat(document.getElementById('number').value);
+
+    var taxaComissao = 0.07;
+
+    // Calcule a comissão
+    var comissao = lucro * taxaComissao;
+
+    // Atualize o campo "Total da Comissão"
+    document.getElementsByName('txtstart')[0].value = comissao.toFixed(2);
+}
+
+</script>
+
+    </div>    
+</body>     
